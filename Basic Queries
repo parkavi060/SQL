@@ -1,0 +1,64 @@
+create database emp;
+use emp;
+create table detail(S_no int, Employee_ID varchar(100), Employee_name varchar(100), dateofbirth varchar(100), dateofjoining varchar(100), salary int, bonus int, city varchar(100), address varchar(100), department varchar(100), Employee_email varchar(100), employee_status varchar(200), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP );
+
+select * from detail;
+
+-- ---2.changing column name------------
+
+
+
+alter table detail change column dateofjoining  Joining_Date date;
+
+alter table detail change column dateofbirth  Birth_Date date;
+-- ---------------3.Adding new column-------
+alter table detail add column Mobile_number varchar(100);
+
+-- ---------------------1.Inserting 10 fields-------------
+INSERT ignore INTO detail (S_no, Employee_ID, Employee_name, Birth_Date, Joining_Date, salary, bonus, city, address, department, Employee_email, employee_status, Mobile_number)
+VALUES 
+(1, 'A21', 'Parkavi', '2005-03-06', '2024-03-21', 50000, 17000, 'Palani', '22/144, North street', 'AI&DS', 'parkavisaravanan06@gmail.com', 'A', '801570'),
+(2, 'B21', 'Janani', '2005-01-13', '2024-03-21', 55000, 17000, 'Erode', '12, West street', 'AI&DS', 'jananisenthilnathan09@gmail.com', 'A', '9074870'),
+(3, 'C21', 'Sujitha', '2004-09-03', '2024-03-19', 57000, 19000, 'Erode', '22, NorthWest street', 'AI&DS', 'sujithav24@gmail.com', 'A', '78569535'),
+(4, 'D21', 'Sharanya', '2005-06-09', '2024-03-19', 59000, 17000, 'Udumalai', '144, Northsouth street', 'AI&DS', 'sharanyat09@gmail.com', 'S', '83547870'),
+(5, 'E21', 'ShajithaBanu', '2004-12-23', '2024-03-21', 50800, 17000, 'Udumalai', '24, North street', 'IT', 'shajithabanis234@gmail.com', 'A', '1267870'),
+(6, 'F21', 'Anjali', '2005-11-08', '2024-03-22', 50000, 17000, 'Palani', '22/144, North street', 'AI&DS', 'anjali06@gmail.com', 'A', '801570'),
+(7, 'G21', 'Suganya', '2005-11-14', '2024-03-21', 55000, 17000, 'Erode', '12, West street', 'IT', 'suganya09@gmail.com', 'A', '9074870'),
+(8, 'H21', 'Preethi', '2004-05-31', '2024-03-22', 57000, 19000, 'Erode', '22, NorthWest street', 'IT', 'preethi24@gmail.com', 'S', '78569535'),
+(9, 'I21', 'Tharani', '2005-06-19', '2024-03-21', 59000, 19000, 'Udumalai', '144, Northsouth street', 'AI&DS', 'tharani09@gmail.com', 'A', '83547870'),
+(10, 'J21', 'Soundarya', '2004-04-22', '2024-03-22', 50800, 17000, 'Udumalai', '24, North street', 'AI&DS', 'sound234@gmail.com', 'S', '1267870');
+
+drop table detail;
+
+-- ----5.drop columns--------- 
+alter table detail drop column Mobile_number;
+
+-- ----------------4.Alter the table with records-----
+
+alter table detail add column phone int;
+
+alter table detail drop column phone;
+
+-- --------5,6,7,8,9Viewing --------------------
+select * from detail where Employee_name like 'S%';
+select * from detail where city='palani';
+select * from detail where bonus>18000;
+
+
+-- -------------------------10,11,12 aggregate functions------------------
+select Max(salary) from detail;
+select Min(salary) from detail;
+select count(Employee_ID) from detail;
+select sum(bonus) from detail;
+select avg(bonus) from detail;
+select * from detail where salary=50000;
+select * from detail where bonus=19000;
+
+
+
+select * from detail where salary between 40000 and 51000;
+
+
+-- ----------Truncate--------------------
+ truncate table detail;
